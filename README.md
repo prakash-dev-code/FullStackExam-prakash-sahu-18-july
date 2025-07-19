@@ -51,7 +51,7 @@ frontend/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/<yourname>/FullStackExam<yourname><date>
+git clone https://github.com/prakash-dev-code/FullStackExam-prakash-sahu-18-july
 cd frontend
 ```
 
