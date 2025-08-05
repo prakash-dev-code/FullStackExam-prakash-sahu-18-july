@@ -15,12 +15,17 @@ import { setLogin } from "@/redux/features/auth-slice";
 import { User } from "@/types/common";
 import ButtonLoader from "@/components/Common/buttonLoader";
 import { useMutation } from "react-query";
-import { SignUpInput, SignUpResponse, VerifyOTPInput, VerifyOTPResponse } from "@/types/auth";
+import {
+  SignUpInput,
+  SignUpResponse,
+  VerifyOTPInput,
+  VerifyOTPResponse,
+} from "@/types/auth";
 const Signup = () => {
   const { verifyOTP, signUp } = useApi();
   const dispatch = useDispatch();
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(true);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(true);
   const [showOTP, setShowOTP] = useState(false);
   const [loading, setLoading] = useState(false);
   const [otp, setOtp] = useState<any>("");
@@ -62,33 +67,30 @@ const Signup = () => {
     },
   });
 
+  const verifyOTPMutation = useMutation({
+    mutationFn: verifyOTP,
+    onSuccess: (res: any) => {
+      const { token, data } = res;
 
-  const verifyOTPMutation = useMutation(
-    {
-      mutationFn: verifyOTP,
-      onSuccess: (res:any) => {
-        const { token, data } = res;
-
-        if (token) {
-          dispatch(setLogin({ token, user: data.user }));
-          router.push("/");
-          toast.success("Logged in successfully");
-          setOtp(null);
-        } else {
-          toast.error(res.message || "Login failed");
-        }
-      },
-      onError: (error: any) => {
-        console.error("Verify Email error:", error.message);
-        toast.error(
-          error.response?.data?.message ||
-            error.message ||
-            "OTP verification failed"
-        );
+      if (token) {
+        dispatch(setLogin({ token, user: data.user }));
+        router.push("/");
+        toast.success("Logged in successfully");
         setOtp(null);
-      },
-    }
-  );
+      } else {
+        toast.error(res.message || "Login failed");
+      }
+    },
+    onError: (error: any) => {
+      console.error("Verify Email error:", error.message);
+      toast.error(
+        error.response?.data?.message ||
+          error.message ||
+          "OTP verification failed"
+      );
+      setOtp(null);
+    },
+  });
 
   const handleVerifyOTP = () => {
     if (!formik.values.email || !otp) {
@@ -101,8 +103,6 @@ const Signup = () => {
       otp,
     });
   };
-
-
 
   return (
     <>

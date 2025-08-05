@@ -24,8 +24,7 @@ type ForgotPasswordResponse = {
 const Signin = () => {
   const { signIN } = useApi();
   const dispatch = useDispatch();
-  const [showPassword, setShowPassword] = useState(true);
- 
+  const [showPassword, setShowPassword] = useState(false);
 
   const router = useRouter();
   // sign in mutation

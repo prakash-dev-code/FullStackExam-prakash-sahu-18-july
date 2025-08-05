@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 const OrderSummary = () => {
   const cartItems = useAppSelector((state) => state.cartReducer.items);
   const totalPrice = useSelector(selectTotalPrice);
-  console.log(cartItems, "CART ITEM");
+  // console.log(cartItems, "CART ITEM");
 
   return (
     <div className="lg:max-w-[455px] w-full">
