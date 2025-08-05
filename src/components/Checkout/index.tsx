@@ -149,7 +149,7 @@ const Checkout = () => {
                   <div className="flex items-center justify-between pt-5">
                     <p className="font-medium text-lg text-dark">Total</p>
                     <p className="font-medium text-lg text-dark text-right">
-                      ${checkoutData?.price?.total || 0}
+                      ${checkoutData?.price?.total.toFixed(2) || 0}
                     </p>
                   </div>
                 </div>

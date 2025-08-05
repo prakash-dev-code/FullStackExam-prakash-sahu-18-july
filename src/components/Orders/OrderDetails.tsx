@@ -60,7 +60,9 @@ const OrderDetails = ({ orderItem }: any) => {
         </div> */}
 
         <div className="min-w-[113px]">
-          <p className="text-custom-sm text-dark">{orderItem.totalAmount}</p>
+          <p className="text-custom-sm text-dark">
+            {orderItem.totalAmount.toFixed(2)}
+          </p>
         </div>
       </div>
       {/* <div className="px-7.5 w-full">

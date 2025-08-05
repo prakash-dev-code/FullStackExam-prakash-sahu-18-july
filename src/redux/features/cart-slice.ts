@@ -166,14 +166,21 @@ export const cart = createSlice({
   reducers: {
     addItemToCart: (state, action: PayloadAction<CartItem>) => {
       const existingItem = state.items.find(
-        (item) => item.id === action.payload.id
+        (item) => item.id._id === action.payload.id
       );
+
       if (existingItem) {
         existingItem.quantity += 1;
       } else {
-        state.items.push({ ...action.payload, quantity: 1 });
+        const newItem = {
+          id: action.payload, // full object goes here
+          discountedPrice: action.payload.discountedPrice,
+          quantity: 1,
+        };
+        state.items.push(newItem);
       }
     },
+
     removeItemFromCart: (state, action: PayloadAction<number | string>) => {
       state.items = state.items.filter((item) => item.id !== action.payload);
     },

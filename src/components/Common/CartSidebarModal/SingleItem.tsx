@@ -4,7 +4,7 @@ import { AppDispatch } from "@/redux/store";
 import Image from "next/image";
 import DefaultImage from "@/../public/images/products/Product-default.png";
 
-const SingleItem = ({ item, removeItemFromCart  }: any) => {
+const SingleItem = ({ item, removeItemFromCart }: any) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleRemoveFromCart = () => {

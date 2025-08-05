@@ -91,7 +91,6 @@ const Page = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isModalOpen, isEditModal]);
-  console.log(loading, "LOADING");
 
   return (
     <>
